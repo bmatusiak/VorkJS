@@ -1,0 +1,42 @@
+{
+  "author": {
+    "name": "Bradley Matusiak",
+    "email": "bmatusiak@gmail.com"
+  },
+  "name": "vorkNode",
+  "node":"0.6.18",
+  "engines": {
+    "node": "0.6.18",
+    "npm":  "1.1.9"
+  },
+  "description": "Simple nodejs website framework",
+  "keywords": [
+    "server",
+    "nodejs",
+    "http",
+    "simple",
+    "mvc",
+    "webapp"
+  ],
+  "version": "0.2.1",
+  "homepage": "https://github.com/bmatusiak/vorkNode",
+  "licenses": [
+    {
+      "type": "GNU"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:bmatusiak/vorkNode.git"
+  },
+  "dependencies": {
+    "socket.io": "*",
+    "express": "*",
+    "ejs": "*",
+    "facebook-js":"*",
+    "request":"*",
+    "mongoose":"*",
+    "connect-mongo":"*"
+    
+  }
+}
