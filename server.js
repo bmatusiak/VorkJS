@@ -1,8 +1,3 @@
-//"use strict";
-process.on('uncaughtException', function(err) {
-  console.log('server.js caught error: ',err);
-});
-
 var config = {
     port: process.env.app_port || process.env.VCAP_APP_PORT || process.env.PORT || 3000,
     ip: process.env.IP || "0.0.0.0",
