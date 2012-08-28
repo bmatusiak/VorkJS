@@ -11,8 +11,9 @@ height: 490px;
 background: white; 
 }
 </style>
+<input type="submit" value="Edit" onClick="javascript: editMarkdown();" />
 
-<div id="markdownView"><%- globals.md(load.element("pages/index")) %></div>
+<div id="markdownView"><%- globals.md(load.element("test-ace")) %></div>
 
 <div id="dialog" title="Markdown Page Editor">
     <div id="editor"><%= load.element("test-ace") %></div>
