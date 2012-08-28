@@ -1,1 +1,23 @@
 <%- load.element("sidemenu") %>
+<style type="text/css">
+#editor {
+width: 600px;
+height: 400px;
+}
+</style>
+<input type="submit" value="Edit" onClick="javascript: editAce();" />
+
+<script src="/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ace/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ace/mode-markdown.js" type="text/javascript" charset="utf-8"></script>
+
+<div id="editor"><%= load.element("test-ace") %></div>
+
+<script>
+function editAce(){
+    var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/twilight");
+    var MarkdownMode = require("ace/mode/markdown").Mode;
+        editor.getSession().setMode(new MarkdownMode());
+}
+</script>

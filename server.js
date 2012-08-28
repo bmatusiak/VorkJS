@@ -1,3 +1,4 @@
+console.log("server.js Started")
 var config = {
     port: process.env.app_port || process.env.VCAP_APP_PORT || process.env.PORT || 3000,
     ip: process.env.IP || "0.0.0.0",
@@ -15,7 +16,6 @@ var vork = require('./lib/vork')(config),
     var io = io.listen(server);
     
 app.configure(function () {
-    
     app.use(express.cookieParser());
     app.use(express.bodyParser());
     app.use(express.session({secret: 'secret', key: 'express.sid'}));
