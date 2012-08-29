@@ -53,7 +53,7 @@
     <input type="submit" value="Login" onClick='javascript: window.location = "/auth/login";' />
 <% } %>
 <br />
-<% if(vork.load.helper("user").isUser && vork.req.session.user.fb && !vork.req.session.user.fb.data){ %>
+<% if(vork.load.helper("user").isUser && vork.req.session.user.fb && vork.req.session.user.fb.data){ %>
     <strong><%- req.session.user.fb.data.name %></strong>
 <% } %>
 </div>
