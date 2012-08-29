@@ -1,13 +1,13 @@
 //controler
 module.exports = function(vork) {
 
-    var callbackURL = getHost();
+    var callbackURL = "http://"+getHost();
     
     function getHost(){
        if(vork.req.headers.host.indexOf("rhcloud.com") >= 1){
             return "vorkjs.bmatusiak.c9.io";
        }else{
-           return vork.req.headers.host;
+           return vork.req.headers.host
        }
     }
     var controler = {};
