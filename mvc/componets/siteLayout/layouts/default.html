@@ -30,8 +30,11 @@
                         <div>
                             <a class="alt" title="Documentation" href="/api">Documentation</a>
                         </div>
+                        <div>
+                            <a title="Vork for PHP" href="http://vork.us/">Vork for PHP</a>
+                        </div>
                     </div>
-                    <a href="http://www.vork.us/app/vork-enterprise-php-framework" title=""><img src="/images/download.png" width="180" height="104" alt="Download Vork" /></a>
+                    <!-- <a href="http://www.vork.us/app/vork-enterprise-php-framework" title=""><img src="/images/download.png" width="180" height="104" alt="Download Vork" /></a> -->
                 </div>
             </div>
         
@@ -40,12 +43,19 @@
 		$( "input:submit, a, button", ".toolbar" ).button();
 		$( "a", ".toolbar" ).click(function() { return false; });
 	});
-	</script>
-
-<input type="submit" value="Edit" onClick="javascript: editMarkdown();" />
-<input type="submit" value="Login" onClick="javascript: editMarkdown();" />
+	</script>  
+<% if(load.helper("user").isUser){
+        if(controler && controler.toolbar){ %>
+            <%- controler.toolbar %>
+        <% } %> 
+    <input type="submit" value="Logout" onClick='javascript: window.location = "/auth/logout";' />
+<% }else{ %>
+    <input type="submit" value="Login" onClick='javascript: window.location = "/auth/login";' />
+<% } %>
 <br />
-User's Name Here
+<% if(load.helper("user").isUser && req.session.user.fb.data){ %>
+    <strong><%- req.session.user.fb.data.name %></strong>
+<% } %>
 </div>
             <div id="bgfiller"></div>
             <div id="content">

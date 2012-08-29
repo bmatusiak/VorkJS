@@ -3,7 +3,7 @@ module.exports = function(vork){
     var controler = {};
     
     //vork.view = "_markdown"
-    controler.index = function(){
+    controler.index = function(callback){
       /*  
         var output = {};
         
@@ -26,7 +26,10 @@ module.exports = function(vork){
         output.markdown_string = MD_STRING;
         
         return output; */
-        return vork.load.helper("md-wiki")
+        var output = vork.load.helper("md-wiki");
+        
+        callback(null,output);
+        //return false;
     };
 
 return controler;

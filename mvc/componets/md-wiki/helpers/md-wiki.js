@@ -21,5 +21,8 @@ module.exports = function(vork){
         
         output.markdown_string = MD_STRING;
         
+        if(vork.load.helper("user").isUser)
+        output.toolbar = '<input type="submit" value="Edit" onClick="javascript:  editMdFile();" />';
+        
         return output; 
 };
