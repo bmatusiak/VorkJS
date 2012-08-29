@@ -1,15 +1,20 @@
 //controler
 module.exports = function(vork) {
 
-    var callbackURL = "http://"+getHost();
+    var callbackURL = getHost();
     
     function getHost(){
-       if(vork.req.headers.host.indexOf("rhcloud.com") >= 1){
-            return "vorkjs.bmatusiak.c9.io";
-       }else{
-           return vork.req.headers.host
-       }
-    }
+        var referer = vork.req.headers.referer;
+       //if(vork.req.headers.host.indexOf("rhcloud.com") >= 1){
+    //        return "vorkjs.herokuapp.com";//"vorkjs.bmatusiak.c9.io";
+     //  }else{
+           if(referer.charAt(referer.length-1) == "/"){
+            referer = referer.slice(0, -1);
+        }
+           return referer;
+       //}
+    };
+    console.log(callbackURL)
     var controler = {};
 
     //vork.layout = null;
