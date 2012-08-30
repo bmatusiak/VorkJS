@@ -16,8 +16,20 @@ struction.construct = function(vork,start,end){
             fb.me('GET', '/', {}, function(error, response, body){
                 if(!error){
                     vork.req.session.user.fb.data = body;
+                    fb.app('GET', "/"+vork.globals.facebook.fb_app_id+'/roles', {}, function(error, response, body){
+                        if(!error){
+                            var usersRoles = {}
+                            for(var i in body.data){
+                                   usersRoles[body.data[i].user] = body.data[i].role;
+                            }
+                            vork.req.session.isAdmin = usersRoles[vork.req.session.user.fb.data.id] == "administrators" ? true : false;
+                            start()
+                        }else
+                            start();
+                    });
                 }
-                start();
+                else
+                    start();
             });
         }
     }else{

@@ -4,7 +4,7 @@ module.exports = function(vork){
     
     vork.view = "_markdown";
     
-    helper.control = function(callback){
+    helper.control = function(allowEdit, callback){
         var output = {};
         
         output.pathToElement =vork.controler+"/"+vork.action+"/"+vork.params.join("/");
@@ -36,7 +36,7 @@ module.exports = function(vork){
         );
         
         function compleate(){
-            if(vork.load.helper("user").isUser && vork.req.session.user.fb){
+            if(allowEdit){
                 vork.view = "_markdown-edit";
                 //output.toolbar = '<input type="submit" value="Edit" onClick="javascript:  editMdFile();" />';
             }

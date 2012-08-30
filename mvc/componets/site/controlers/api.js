@@ -4,7 +4,7 @@ module.exports = function(vork){
     
     controler.index = function(callback){
       
-        var output = vork.load.helper("md-wiki").control(callback);
+        var output = vork.load.helper("md-wiki").control(vork.load.helper("user").isUser,callback);
         
         //callback(null,output);
     };
