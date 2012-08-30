@@ -1,22 +1,14 @@
 //controler
 module.exports = function(vork) {
 
-    var callbackURL = getHost();
     
-    function getHost(){
-        if(vork.req.headers.host.indexOf("rhcloud.com") >= 1){
-            return "http://vorkjs.herokuapp.com";
-        }else{
-           return "http://"+vork.req.headers.host;
-        }
-    };
-    console.log(callbackURL)
+    
     var controler = {};
 
     //vork.layout = null;
 
     var fb = vork.load.helper("facebook");
-
+    var callbackURL = fb.cb_url;
     controler.index = function(callback) {
         controler.login(callback);
     };
@@ -29,6 +21,7 @@ module.exports = function(vork) {
 
     controler.login = function(callback) {
         var loginUrl = fb.authUrl(callbackURL+"/auth/callback", "email", callback);
+        console.log(
         vork.res.redirect(loginUrl);
     };
     controler.callback = function(cb) {
