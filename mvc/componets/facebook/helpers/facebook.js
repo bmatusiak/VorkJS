@@ -7,7 +7,7 @@ function FacebookAPI(vork){
     var self = this;
     self.vork = vork;
     
-    self.cb_url = "http://vorkjs.herokuapp.com";
+    self.cb_url = "http://vorkjs.bmatusiak.c9.io";
     
     
     if(!vork.req.session.user)
@@ -24,7 +24,7 @@ function FacebookAPI(vork){
     self.logoutUrl = function(url,callback) {
         var fb_logoutURL = "https://www.facebook.com/logout.php?";
         if(!url){
-            url = "http://"+vork.req.headers.host+"/";
+            url = self.cb_url+"/";
         }
         var querystring = require("querystring");
         
@@ -34,7 +34,7 @@ function FacebookAPI(vork){
         query.next = url;
         
         var out = fb_logoutURL+querystring.stringify(query);
-        console.log(vork.req.session.user)
+        //console.log(vork.req.session.user)
         if(callback){
             callback(out);
         }else{

@@ -63,7 +63,7 @@ module.exports = function(vork){
         callback();
     };
     
-    self.isUser = vork.req.session.user ? true : false;
+    self.isUser = vork.req.session.user && vork.req.session.user.fb ? true : false;
     
     self.thisUser = function(callback){
         if(!vork.req.session.user || vork.req.session.user.email){

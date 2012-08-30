@@ -1,8 +1,6 @@
 //controler
 module.exports = function(vork) {
 
-    
-    
     var controler = {};
 
     //vork.layout = null;

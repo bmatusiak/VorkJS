@@ -11,15 +11,19 @@ height: 490px;
 background: white; 
 }
 </style>
-<input type="submit" value="Edit" onClick="javascript: editMarkdown();" />
+<% controler.toolbar = '<input type="submit" value="Edit" onClick="javascript: edit();" />' %>
 
-<div id="markdownView"><%- globals.md(load.element("test-ace")) %></div>
+<div id="markdownView"><%- globals.md(controler.markdown_string) %></div>
+<% if(controler.markdown_authorID){ %>
+<div class="vorkwiki_lastmod"><a href="http://www.facebook.com/profile.php?id=<%= controler.markdown_authorID  %>" title="" onclick="window.open(this.href); return false;"><img src="//graph.facebook.com/<%= controler.markdown_authorID  %>/picture?type=square" width="25" height="25" alt="<%= controler.markdown_authorName  %>" /></a>Last modified  by <a href="http://www.facebook.com/profile.php?id=<%= controler.markdown_authorID  %>" title="<%= controler.markdown_authorName  %>" onclick="window.open(this.href); return false;"><%= controler.markdown_authorName  %></a></div>
+<% } %>
 
 <div id="dialog" title="Markdown Page Editor">
-    <div id="editor"><%= load.element("test-ace") %></div>
+    <div id="editor"><%= controler.markdown_string %></div>
 </div>
         
 <script>
+var editor = {}
 //buttons
 $( "input:submit, button").button();
 // Dialog
@@ -30,16 +34,29 @@ $('#dialog').dialog({
     resizable: false,
 	buttons: {
 		"Save": function() {
-			$(this).dialog("close");
+            var self = $(this);
+            var success = function(error){
+                self.dialog("close"); 
+            }
+            $.ajax({
+              type: 'POST',
+              url: "/api/post",
+              success: success,
+              data: {"content": editor.getSession().getDocument().getValue(),pathToElement:"<%- controler.pathToElement %>"}
+            });
+            //$(this).dialog("close");
+            
 		},
 		"Cancel": function() {
-			$(this).dialog("close");
+            var out = editor.getSession().getDocument().getValue();
+            $(this).text(out);
+			//$(this).dialog("close");
 		}
 	}
 });
-function editMarkdown(){
+function edit(){
     
-    var editor = ace.edit("editor");
+    editor = ace.edit("editor");
         editor.setTheme("ace/theme/textmate");
        editor.setShowPrintMargin(false);
     var MarkdownMode = require("ace/mode/markdown").Mode;

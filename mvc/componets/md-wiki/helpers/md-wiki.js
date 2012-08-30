@@ -1,28 +1,49 @@
 //helper
 module.exports = function(vork){
-     
-        vork.view = "_markdown";
+    var helper = {};
     
+    vork.view = "_markdown";
+    
+    helper.control = function(callback){
         var output = {};
         
-        var pathToElement ="mdPages/"+vork.action+"/"+vork.params.join("/");
+        output.pathToElement =vork.controler+"/"+vork.action+"/"+vork.params.join("/");
         
-        if(pathToElement.charAt(pathToElement.length-1) == "/"){
-            pathToElement = pathToElement.slice(0, -1);
+        if(output.pathToElement.charAt(output.pathToElement.length-1) == "/"){
+            output.pathToElement = output.pathToElement.slice(0, -1);
         }
-        if(pathToElement == "mdPages/"){
-            pathToElement += "index";
-        }
-        var MD_STRING = vork.load.element(pathToElement);
-        
-        if(MD_STRING == null){
-            MD_STRING = vork.load.element("mdPages/notFound");
+        if(output.pathToElement == vork.controler+"/"){
+            output.pathToElement += "index";
         }
         
-        output.markdown_string = MD_STRING;
+        var mdWikiModel = vork.load.model("md-wiki");
+        mdWikiModel.getFile( output.pathToElement,function(err,res){
+                if(res && res.content){
+                    output.markdown_string = res.content;
+                    output.markdown_authorID = res.author;
+                    output.markdown_date = res.date;
+                    var fb = vork.load.helper("facebook");
+                    fb.graph('GET', '/'+res.author, {}, function(error, response, body){
+                        output.markdown_authorName = body.name;
+                        compleate();
+                    });
+                    //compleate()
+                }else{
+                    output.markdown_string = vork.load.element("mdPages/notFound");
+                    compleate();
+                }
+            }
+        );
         
-        if(vork.load.helper("user").isUser)
-        output.toolbar = '<input type="submit" value="Edit" onClick="javascript:  editMdFile();" />';
-        
-        return output; 
+        function compleate(){
+            if(vork.load.helper("user").isUser && vork.req.session.user.fb){
+                vork.view = "_markdown-edit";
+                //output.toolbar = '<input type="submit" value="Edit" onClick="javascript:  editMdFile();" />';
+            }
+            
+            callback(null,output)
+        }
+    }
+    
+    return helper;
 };

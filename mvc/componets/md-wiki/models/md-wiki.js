@@ -11,12 +11,15 @@ module.exports = function(db) { //calld when vork loads model every time
     });
     
     model.getFile = function(location,callback){
-        var mdFile = db.model('mdFiles', mdFile);
+        var mdFiles = db.model('mdFiles', mdFile);
         
-        mdFile.find({location: location}, callback);
+        mdFiles.find({location: location}).exec(function(error,rows){
+            
+                callback(error,rows[rows.length-1]);
+            });
     }
     
-    model.addFile = function(location,content,callback){
+    model.addFile = function(location,content,author,callback){
         var mdFiles = db.model('mdFiles', mdFile);
         
         var new_mdFile = new mdFiles();
@@ -24,7 +27,7 @@ module.exports = function(db) { //calld when vork loads model every time
         new_mdFile.location = location;
         new_mdFile.content = content;
         new_mdFile.date = new Date();
-        new_mdFile.author = "";
+        new_mdFile.author = author;
         
         new_mdFile.save(callback);
     };
