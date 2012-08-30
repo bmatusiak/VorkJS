@@ -7,7 +7,7 @@ function FacebookAPI(vork){
     var self = this;
     self.vork = vork;
     
-    self.url = "http://vorkjs.herokuapp.com";
+    self.cb_url = "http://vorkjs.herokuapp.com";
     
     
     if(!vork.req.session.user)
