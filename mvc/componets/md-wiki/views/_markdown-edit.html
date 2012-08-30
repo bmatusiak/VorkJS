@@ -37,6 +37,7 @@ $('#dialog').dialog({
             var self = $(this);
             var success = function(error){
                 self.dialog("close"); 
+                javascript: window.location = "/<%- controler.pathToElement %>";
             }
             $.ajax({
               type: 'POST',
