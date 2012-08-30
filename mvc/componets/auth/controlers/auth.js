@@ -4,15 +4,11 @@ module.exports = function(vork) {
     var callbackURL = getHost();
     
     function getHost(){
-        var referer = vork.req.headers.referer;
-       //if(vork.req.headers.host.indexOf("rhcloud.com") >= 1){
-    //        return "vorkjs.herokuapp.com";//"vorkjs.bmatusiak.c9.io";
-     //  }else{
-           if(referer.charAt(referer.length-1) == "/"){
-            referer = referer.slice(0, -1);
+        if(vork.req.headers.host.indexOf("rhcloud.com") >= 1){
+            return "http://vorkjs.herokuapp.com";
+        }else{
+           return "http://"+vork.req.headers.host;
         }
-           return referer;
-       //}
     };
     console.log(callbackURL)
     var controler = {};
