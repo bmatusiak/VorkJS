@@ -7,15 +7,8 @@ function FacebookAPI(vork){
     var self = this;
     self.vork = vork;
     
-    self.url = getHost();
+    self.url = "http://vorkjs.herokuapp.com";
     
-    function getHost(){
-        if(vork.req.headers.host.indexOf("rhcloud.com") >= 1){
-            return "http://vorkjs.bmatusiak.c9.io";//your cloud9 server url location
-        }else{
-           return "http://"+vork.req.headers.host;
-        }
-    };
     
     if(!vork.req.session.user)
         vork.req.session.user = {};
