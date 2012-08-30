@@ -10,7 +10,7 @@ function FacebookAPI(vork){
     if(vork.req.headers.host.indexOf("rhcloud.com") >= 1)
         self.cb_url = "http://vorkjs.bmatusiak.c9.io";
     else
-        self.cb_url = "http://"+vork.req.headers.host; 
+        self.cb_url = "http://vorkjs.herokuapp.com"; 
     
     
     if(!vork.req.session.user)
