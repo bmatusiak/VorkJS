@@ -21,7 +21,6 @@ module.exports = function(vork) {
 
     controler.login = function(callback) {
         var loginUrl = fb.authUrl(callbackURL+"/auth/callback", "email", callback);
-        console.log(
         vork.res.redirect(loginUrl);
     };
     controler.callback = function(cb) {
