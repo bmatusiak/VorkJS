@@ -23,35 +23,43 @@ background: white;
 </div>
         
 <script>
-var editor = {}
-//buttons
-$( "input:submit, button").button();
-// Dialog
-$('#dialog').dialog({
-	autoOpen: false,
-	width: 825,
-    height:600,
-    resizable: false,
-	buttons: {
-		"Save": function() {
-            var self = $(this);
-            var success = function(error){
-                self.dialog("close"); 
-                javascript: window.location = "/<%- controler.pathToElement %>";
-            }
-            $.ajax({
-              type: 'POST',
-              url: "/api/post",
-              success: success,
-              data: {"content": editor.getSession().getDocument().getValue(),pathToElement:"<%- controler.pathToElement %>"}
-            });
-            //$(this).dialog("close");
-            
-		},
-		"Cancel": function() {
-            $(this).dialog("close");
-		}
-	}
+$(function(){
+        
+    var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/textmate");
+       editor.setShowPrintMargin(false);
+    var MarkdownMode = require("ace/mode/markdown").Mode;
+        editor.getSession().setMode(new MarkdownMode());
+        
+    //buttons
+    $( "input:submit, button").button();
+    // Dialog
+    $('#dialog').dialog({
+    	autoOpen: false,
+    	width: 825,
+        height:600,
+        resizable: false,
+    	buttons: {
+    		"Save": function() {
+                var self = $(this);
+                var success = function(error){
+                    self.dialog("close"); 
+                    javascript: window.location = "/<%- controler.pathToElement %>";
+                }
+                $.ajax({
+                  type: 'POST',
+                  url: "/api/post",
+                  success: success,
+                  data: {"content": editor.getSession().getDocument().getValue(),pathToElement:"<%- controler.pathToElement %>"}
+                });
+                //$(this).dialog("close");
+                
+    		},
+    		"Cancel": function() {
+                $(this).dialog("close");
+    		}
+    	}
+    });
 });
 function edit(){
     
