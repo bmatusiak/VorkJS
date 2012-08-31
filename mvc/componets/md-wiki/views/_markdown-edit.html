@@ -49,9 +49,7 @@ $('#dialog').dialog({
             
 		},
 		"Cancel": function() {
-            var out = editor.getSession().getDocument().getValue();
-            $(this).text(out);
-			//$(this).dialog("close");
+            $(this).dialog("close");
 		}
 	}
 });
