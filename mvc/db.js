@@ -29,7 +29,7 @@ var HOSTNAME = 'HOSTNAME';
         var dbURI = process.env.MONGOLAB_URI || "mongodb://vorkjsreader:reader@ds031087.mongolab.com:31087/vorkjs";
         var mongoose = require('mongoose');
         mongoose.connect(dbURI);
-	console.log("mongoDB database selected")
+	console.log("mongoDB database : " +dbURI)
         returndb = mongoose;
         break;
     default:

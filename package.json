@@ -36,7 +36,8 @@
     "facebook-js":"*",
     "request":"*",
     "mongoose":"*",
-    "connect-mongo":"*"
+    "connect-mongo":"*",
+    "node-markdown":"*"
     
   }
 }

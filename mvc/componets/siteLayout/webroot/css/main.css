@@ -29,9 +29,9 @@ body {font-family: "Arial"; font-size: small;}
 textarea {width: 640px; height: 70px;}
 a, .textLink {text-decoration: none; color: #10478b; font-weight: bold;}
 a:hover, .textLink:hover {text-decoration: underline; color: #7987ae;}
-h1, h2, h3, h4 {margin-bottom: 3px;}
+h1, h2, h3, h4 {margin-bottom: 3px; margin-top:5px;}
 h1, h2 {margin-left: -1px;}
-h1 {font-family: "Arial Black"; font-size: 27px; color: #000;}
+h1 {font-family: "Arial Black"; font-size: 27px; color: #624940;}
 h1.midpageh1 {margin-top: 10px;}
 h2 {font-size: large; font-weight: bold; margin-top: 10px; color: #10478b;}
 h3 {font-weight: bold; color: #fc4f0c;}
@@ -94,7 +94,8 @@ code {color: #df470c; font-weight: bold; letter-spacing: 1px;}
 #content {width: 950px; margin: auto; background: #fff;}
 #logotop {float: left;}
 
-#osphp {float: left;}
+#osphp {float: left; height:90px; width:580px;padding-top: 10px;}
+#toplinks input {}
 #osphp, #toplinks {padding-left: 15px;}
 #toplinks {float: left; height: 104px; width: 380px; font-family: "Arial Black"; font-size: x-large; padding-top: 5px;}
 #toplinks div {height: 30px;}
@@ -134,7 +135,7 @@ code {color: #df470c; font-weight: bold; letter-spacing: 1px;}
 #contentbottom {height: 30px;}
 * html #nonfooter {height: 100%; margin-bottom: -160px;}
 
-#bgfiller {background: #fff; width: 300px; height: 70px;}
+#bgfiller {background: #fff; width: 990px; height: 90px; margin: auto;}
 
 #sidemenu {float: right; background: URL('/images/sidemenu-bg.png'); width: 270px; height: 226px; margin-top: -20px; margin-left: 2px; font-family: "Arial Black"; color: #fff;}
 * html #sidemenu {margin-left: -1px}

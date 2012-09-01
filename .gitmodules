@@ -1,0 +1,3 @@
+[submodule "mvc/componets/ace-editor/webroot/ace"]
+	path = mvc/componets/ace-editor/webroot/ace
+	url = git://github.com/ajaxorg/ace-builds.git

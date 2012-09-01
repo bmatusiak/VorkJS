@@ -7,5 +7,9 @@ module.exports = function(globals){
     
     //init.webroot = init.basepath+'/webroot'
     
+    
+    globals.md = require("node-markdown").Markdown;
+    
+    
     return init;
 }

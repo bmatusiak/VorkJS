@@ -5,7 +5,7 @@ module.exports = function(globals){
     
     init.basepath = __dirname;
     
-    //init.webroot = init.basepath+'/webroot'
+    init.webroot = init.basepath+'/webroot';
     
     return init;
-}
+};

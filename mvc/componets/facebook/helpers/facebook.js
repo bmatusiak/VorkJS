@@ -1,33 +1,66 @@
 var fb = require('facebook-js');
-var request = require("request");
 module.exports = function(vork){
     return new FacebookAPI(vork);   
 };
+
 function FacebookAPI(vork){
     var self = this;
     self.vork = vork;
     
-    if(!vork.globals.facebook.sessions[vork.req.sessionID]) vork.globals.facebook.sessions[vork.req.sessionID] = {};
+    if(vork.req.headers.host.indexOf("rhcloud.com") >= 1)
+        self.cb_url = "http://vorkjs.bmatusiak.c9.io";
+    else
+        self.cb_url = "http://vorkjs.herokuapp.com"; 
     
+    
+    if(!vork.req.session.user)
+        vork.req.session.user = {};
+        
     self.authUrl = function(callback_url,scope) {
        return fb.getAuthorizeUrl({
             client_id: vork.globals.facebook.fb_app_id,
             redirect_uri: callback_url,
             scope: scope
-        })
+        });
     };
     
-    self.authUrl = function(code,callback_url,next) {
+    self.logoutUrl = function(url,callback) {
+        var fb_logoutURL = "https://www.facebook.com/logout.php?";
+        if(!url){
+            url = self.cb_urlt+"/";
+        }
+        var querystring = require("querystring");
+        
+        var query = {};
+        query.access_token = vork.req.session.user.fb.access_token;
+        query.confirm = 1;
+        query.next = url;
+        
+        var out = fb_logoutURL+querystring.stringify(query);
+        //console.log(vork.req.session.user)
+        if(callback){
+            callback(out);
+        }else{
+            return out;
+        }
+       
+    };
+    
+    self.getAccessToken = function(callback_url,next) {
         fb.getAccessToken(
             vork.globals.facebook.fb_app_id,
             vork.globals.facebook.fb_app_secret,
-            code,
+            vork.req.param('code'),
             callback_url,
             function(error, access_token, refresh_token) {
-                vork.globals.facebook.sessions[vork.req.sessionID].fb_token = access_token;
+                if(!error){
+                    vork.req.session.user.fb = {};
+                    vork.req.session.user.fb.access_token = access_token;
+                    vork.req.session.user.fb.refresh_token = refresh_token;
+                }
                 next();
         });
-    }
+    };
     
     self.graph = function(method,connector,data,callback) {
         fb.apiCall(method, connector,data, callback);
@@ -41,8 +74,11 @@ function FacebookAPI(vork){
     };
     
     self.me = function(method,connector,data,callback) {
-        data.access_token = vork.globals.facebook.sessions[vork.req.sessionID].fb_token;
-        fb.apiCall(method, '/me/' + connector,data, callback);
+        if(vork.req.session.user && vork.req.session.user.fb && vork.req.session.user.fb.access_token){
+            data.access_token = vork.req.session.user.fb.access_token;
+            fb.apiCall(method, '/me' + connector,data, callback);
+        }else
+            callback("must be logged in via facebook");
     };
 
 return self;
