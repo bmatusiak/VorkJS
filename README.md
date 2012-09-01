@@ -6,7 +6,7 @@ vorkNode by Bradley Matusiak
 
     bmatusiak@ gmail.com
     
-    <a herf="http://vorknode.herokuapp.com/">http://vorknode.herokuapp.com/</a>
+[http://vorkjs.herokuapp.com/](http://vorkjs.herokuapp.com/)
     
 ## Installation and Usage
 
