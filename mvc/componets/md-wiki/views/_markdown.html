@@ -1,6 +1,6 @@
 <%- load.element("sidemenu") %>
 
 <div id="markdownView"><%- globals.md(controler.markdown_string) %></div>
-<% if(controler.markdown_authorID){ %>
+<% if(controler.markdown_authorID && req.session.user && req.session.user.fb){ %>
 <div class="vorkwiki_lastmod"><a href="http://www.facebook.com/profile.php?id=<%= controler.markdown_authorID  %>" title="" onclick="window.open(this.href); return false;"><img src="//graph.facebook.com/<%= controler.markdown_authorID  %>/picture?type=square" width="25" height="25" alt="<%= controler.markdown_authorName  %>" /></a>Last modified  by <a href="http://www.facebook.com/profile.php?id=<%= controler.markdown_authorID  %>" title="<%= controler.markdown_authorName  %>" onclick="window.open(this.href); return false;"><%= controler.markdown_authorName  %></a></div>
 <% } %>
