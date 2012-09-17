@@ -130,7 +130,7 @@ code {color: #df470c; font-weight: bold; letter-spacing: 1px;}
 #nonfooter {min-height: 100%; margin-bottom: -160px;}
 #content {margin-bottom: 140px; min-height: 260px;}
 * html #content {height: 260px;}
-#endofcontent {height: 50px; width: 980px;}
+#endofcontent {height: 50px; width: 980px; clear:both;}
 * html #endofcontent {display: none;}
 #contentbottom {height: 30px;}
 * html #nonfooter {height: 100%; margin-bottom: -160px;}
