@@ -6,11 +6,8 @@ module.exports = function(globals){
     init.basepath = __dirname;
      
     
-    globals.md = require("node-markdown").Markdown;
-    
-    try{
-        
-        globals.md2 = function(markdown){
+    globals.md = function(markdown){
+        try{
             var jsdom = require('jsdom').jsdom;
             var html = require("./showdown.js").Showdown.converter().makeHtml(markdown);
             var doc   = jsdom(html)
@@ -33,10 +30,10 @@ module.exports = function(globals){
                 }
             }
             return doc.innerHTML;
+        }catch(e){
+            return require("node-markdown").Markdown(markdown);
         }
-    }catch(e){
-        console.log(e);
     }
-    
+
     return init;
 }
