@@ -4,7 +4,8 @@ module.exports = function(globals){
     init.ready = false;
     
     init.basepath = __dirname;
-     
+    
+    init.webroot = init.basepath+'/webroot'
     
     globals.md = function(markdown){
         try{

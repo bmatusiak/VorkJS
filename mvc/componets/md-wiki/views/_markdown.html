@@ -1,4 +1,7 @@
 <%- load.element("sidemenu") %>
+<link rel="stylesheet" href="/css/vs.css">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 <div id="markdownView"><%- globals.md(controler.markdown_string) %></div>
 <% if(controler.markdown_authorID && req.session.user && req.session.user.fb){ %>
