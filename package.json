@@ -37,7 +37,8 @@
     "request":"*",
     "mongoose":"*",
     "connect-mongo":"*",
-    "node-markdown":"*"
+    "node-markdown":"*",
+    "jsdom":"*"
     
   }
 }
