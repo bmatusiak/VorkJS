@@ -1,0 +1,10 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+$(function(){
+    var socket = io.connect("https://bmsocket.herokuapp.com");
+	socket.on('count', function (data) {
+		$("#count").text(data.count);
+	});
+});
+</script>
+<div style="text-align:center;">Hit Counter : <h1 id="count">#</h1></div>
