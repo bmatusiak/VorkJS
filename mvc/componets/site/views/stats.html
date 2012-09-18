@@ -1,8 +1,8 @@
-<script src="/socket.io/socket.io.js"></script>
+<script src="http://bmsocket.herokuapp.com/socket.io/socket.io.js"></script>
 <script>
 $(function(){
-    var socket = io.connect("https://bmsocket.herokuapp.com");
-	socket.on('count', function (data) {
+    window.socket = io.connect("http://bmsocket.herokuapp.com");
+	window.socket.on('count', function (data) {
 		$("#count").text(data.count);
 	});
 });
