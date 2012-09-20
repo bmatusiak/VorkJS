@@ -44,9 +44,9 @@
 		$( "a", ".toolbar" ).click(function() { return false; });
 	});
 	</script>  
-<% if(load.helper("user").isUser){
-        if(controler && controler.toolbar){ %>
-            <%- controler.toolbar %>
+<% if(vork.load.helper("user").isUser){
+        if(vork.controler && vork.controler.toolbar){ %>
+            <%- vork.controler.toolbar %>
         <% } %> 
     <input type="submit" value="Logout" onClick='javascript: window.location = "/auth/logout";' />
 <% }else{ %>
@@ -54,14 +54,14 @@
 <% } %>
 <br />
 <% if(vork.load.helper("user").isUser && vork.req.session.user.fb && vork.req.session.user.fb.data){ %>
-    <strong><%- req.session.user.fb.data.name %></strong>
+    <strong><%- vork.req.session.user.fb.data.name %></strong>
 <% } %>
 </div>
             <div id="bgfiller"></div>
             <div id="content">
                 
                 <!-- content here -->
-                <%- view %>
+                <%- vork.view %>
                 
                 <div id="endofcontent"></div>
             </div>
@@ -71,6 +71,6 @@
         </div>
         <div id="mascot"></div>
         <!-- <script type="text/javascript" src="https://GoChat.us/chat.js?appid=vork.us"></script> -->
-        <img type="text/javascript" src="//bmsocket.herokuapp.com/tracking.gif"></script>
+        <img type="text/javascript" src="//bmsocket.herokuapp.com/tracking.gif" />
     </body>
 </html>
