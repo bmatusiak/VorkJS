@@ -1,21 +1,26 @@
-module.exports = function(vork) { //calld when vork loads model every time
-
-    var users = {};
+module.exports = function(db) { //calld when vork loads model every time
+    var model = {};
     
-    users.user = function(id) {
+    var Schema = db.Schema
     
-    };
-
-
-    (function() {
-        var sql = 'CREATE TABLE IF NOT EXISTS users ' +
-                    '(user_id INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,' +
-                    'user_name VARCHAR( 32 ) NOT NULL ,' +
-                    'user_password VARCHAR( 254 ) NOT NULL)';
-
-        vork.db.query(sql);
-        console.log("Users Model init done");
-    })();
+    var user = new Schema({
+        email: String,
+        password: String
+    });
     
-    return users;
+    model.getUser = function(email,callback){
+        var users = db.model('users', user);
+        
+        users.findOne({email: email}, callback);
+    }
+    model.addUser = function(email,callback){
+        var users = db.model('users', user);
+        
+        var new_user = new users();
+        
+        new_user.email = email
+        
+        new_user.save(callback);
+    }
+    return model;
 };

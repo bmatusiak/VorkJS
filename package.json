@@ -30,13 +30,13 @@
     "url": "git://github.com:bmatusiak/vorkNode.git"
   },
   "dependencies": {
-    "socket.io": "*",
-    "express": "*",
-    "ejs": "*",
+    "vork": "0.0.2",
     "facebook-js":"*",
     "request":"*",
     "mongoose":"*",
-    "connect-mongo":"*"
+    "connect-mongo":"*",
+    "node-markdown":"*",
+    "jsdom":"*"
     
   }
 }
