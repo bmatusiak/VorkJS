@@ -1,24 +1,25 @@
 =======
-VorkJS
+vorkNode
 ========
 
-VorkJS 
-by Bradley Matusiak       
+vorkNode by Bradley Matusiak       
 
-[bmatusiak@gmail.com](mailto:bmatusiak@gmail.com)
+    bmatusiak@ gmail.com
     
-[VorkJS Website](https://vorkjs.herokuapp.com/)
+    <a herf="http://vorknode.herokuapp.com/">http://vorknode.herokuapp.com/</a>
     
 ## Installation and Usage
 
 Requirements:
 
-  * NodeJS `>= 0.6.18`
+  * NodeJS `>= 0.6.15`
   * NPM `>= 1.1.16`
 
 Install:
 
-     npm install vork
+     get clone git://github.com/bmatusiak/vorkNode.git
+     cd vorkNode
+     npm install
     
 ## License
 
@@ -39,7 +40,7 @@ The GPL version 3, read it at [http://www.gnu.org/licenses/gpl.txt](http://www.g
                                 |       \   |   |
                          _______V_____  \   |   |      ____________
                          |           |  \   |   |    |           |
-                         |   layout  |  \   |   |    |   VorkJS  |
+                         |   layout  |  \   |   |    |  vorkNode |
                          |____(ejs)__|  \   |   |----|  objects  |
                                 |       \  *|        |___________|
                          _______V_____  \
