@@ -39,7 +39,7 @@ The GPL version 3, read it at [http://www.gnu.org/licenses/gpl.txt](http://www.g
                                 |       \   |   |
                          _______V_____  \   |   |      ____________
                          |           |  \   |   |    |           |
-                         |   layout  |  \   |   |    |  vorkNode |
+                         |   layout  |  \   |   |    |   VorkJS  |
                          |____(ejs)__|  \   |   |----|  objects  |
                                 |       \  *|        |___________|
                          _______V_____  \
