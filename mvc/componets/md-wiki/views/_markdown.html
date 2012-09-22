@@ -1,9 +1,0 @@
-<%- vork.load.element("sidemenu") %>
-<link rel="stylesheet" href="/css/textmate.css">
-<script src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-<div id="markdownView"><%- vork.globals.md(vork.controler.markdown_string) %></div>
-<% if(vork.controler.markdown_authorID && vork.req.session.user && vork.req.session.user.fb){ %>
-<div class="vorkwiki_lastmod"><a href="http://www.facebook.com/profile.php?id=<%= vork.controler.markdown_authorID  %>" title="" onclick="window.open(this.href); return false;"><img src="//graph.facebook.com/<%= vork.controler.markdown_authorID  %>/picture?type=square" width="25" height="25" alt="<%= vork.controler.markdown_authorName  %>" /></a>Last modified  by <a href="http://www.facebook.com/profile.php?id=<%= vork.controler.markdown_authorID  %>" title="<%= vork.controler.markdown_authorName  %>" onclick="window.open(this.href); return false;"><%= vork.controler.markdown_authorName  %></a></div>
-<% } %>
